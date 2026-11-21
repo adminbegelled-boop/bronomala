@@ -144,6 +144,13 @@ export const toggleCheckInAdmin = (id) => {
   });
 };
 
+// Toggle or complete payment status
+export const togglePaymentAdmin = (id) => {
+  return request(`/admin/participants/${id}/payment`, {
+    method: 'PATCH',
+  });
+};
+
 // Get CSV Export URL
 export const getExportCSVUrl = () => {
   return `${API_BASE}/admin/export`;

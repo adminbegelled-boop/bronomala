@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { X, Search, Ticket, CheckCircle, AlertCircle, Loader2, QrCode } from 'lucide-react';
+import { X, Search, Ticket, CheckCircle, AlertCircle, Loader2, QrCode, Phone } from 'lucide-react';
 import { searchTicket } from '../lib/api';
 
 export default function TicketSearchModal({ isOpen, onClose }) {
@@ -39,7 +39,7 @@ export default function TicketSearchModal({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-md bg-[#0a0f1d] border border-pink-500/25 rounded-3xl shadow-2xl p-5 sm:p-7">
+      <div className="relative w-full max-w-md bg-[#0a0f1d] border border-pink-500/25 rounded-3xl shadow-2xl p-5 sm:p-7 space-y-4">
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors"
@@ -48,17 +48,19 @@ export default function TicketSearchModal({ isOpen, onClose }) {
           <X className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-2 mb-1">
-          <Ticket className="w-5 h-5 text-orange-400" />
-          <h3 className="text-lg sm:text-xl font-black text-white font-['Space_Grotesk']">
-            আপনার উৎসব পাস খুঁজুন
-          </h3>
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <Ticket className="w-5 h-5 text-orange-400" />
+            <h3 className="text-lg sm:text-xl font-black text-white font-['Space_Grotesk']">
+              আপনার পূর্ণমিলনী পাস খুঁজুন
+            </h3>
+          </div>
+          <p className="text-slate-400 text-xs">
+            বর্ণমালা মাল্টিমিডিয়া স্কুল • আপনার টিকেট আইডি অথবা মোবাইল নম্বর দিয়ে সার্চ করুন।
+          </p>
         </div>
-        <p className="text-slate-400 text-xs mb-5">
-          বর্ণমালা মাল্টিমিডিয়া স্কুল • আপনার টিকেট আইডি (যেমন: BMS-XXXXXX) অথবা মোবাইল নম্বর দিয়ে সার্চ করুন।
-        </p>
 
-        <form onSubmit={handleSearch} className="mb-4">
+        <form onSubmit={handleSearch}>
           <div className="flex gap-2">
             <input
               type="text"
@@ -121,12 +123,30 @@ export default function TicketSearchModal({ isOpen, onClose }) {
               </div>
             </div>
 
-            <div className="pt-2 border-t border-slate-800 flex justify-between items-center text-[10px] font-mono text-slate-400">
-              <span>গেট এন্ট্রি স্ট্যাটাস</span>
-              <span className="text-orange-400 font-bold">১৯-১২-২০২৬ (সকাল ০৮:০০ টা)</span>
+            {/* Payment Status Display */}
+            <div className="pt-2 border-t border-slate-800 flex justify-between items-center text-xs">
+              <span className="text-slate-400 text-[11px]">পেমেন্ট স্ট্যাটাস:</span>
+              <span className={`px-2 py-0.5 rounded-md text-[10px] font-bold ${
+                result.paymentStatus === 'Completed'
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                  : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+              }`}>
+                {result.paymentStatus === 'Completed' ? 'পরিশোধিত (Completed)' : 'পেন্ডিং (Pending)'}
+              </span>
             </div>
           </div>
         )}
+
+        {/* Emergency Contacts Box */}
+        <div className="p-3 bg-slate-900/80 border border-slate-800 rounded-2xl text-[11px] space-y-1">
+          <div className="text-orange-400 font-bold flex items-center gap-1.5">
+            <Phone className="w-3.5 h-3.5" /> জরুরি যোগাযোগ (পেমেন্ট নিশ্চিতকরণে):
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-slate-300">
+            <div>মাজেদ স্যার: <a href="tel:01714785807" className="font-bold text-yellow-300 hover:underline">01714785807</a></div>
+            <div>মিঠু স্যার: <a href="tel:01316050399" className="font-bold text-yellow-300 hover:underline">01316050399</a></div>
+          </div>
+        </div>
       </div>
     </div>
   );

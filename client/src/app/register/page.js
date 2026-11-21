@@ -100,7 +100,7 @@ export default function RegisterPage() {
             href="/"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-all"
           >
-            <ArrowLeft className="w-3.5 h-3.5" /> উৎসব সাইটে ফিরে যান
+            <ArrowLeft className="w-3.5 h-3.5" /> হোম পেজে ফিরে যান
           </Link>
 
           <button
@@ -130,16 +130,16 @@ export default function RegisterPage() {
               বর্ণমালা মাল্টিমিডিয়া স্কুল
             </span>
             <h1 className="text-xl sm:text-2xl font-black tracking-tight font-['Space_Grotesk']">
-              বিদায় উৎসব রেজিস্ট্রেশন ফর্ম
+              পূর্ণমিলনী রেজিস্ট্রেশন ফর্ম
             </h1>
             <p className="text-pink-100 text-xs mt-1">
               তারিখ: ১৯-১২-২০২৬ • পাস পেতে নিচের ৪টি তথ্য পূরণ করুন
             </p>
           </div>
 
-          <div className="p-5 sm:p-7">
+          <div className="p-5 sm:p-7 space-y-4">
             {error && (
-              <div className="mb-5 p-3.5 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5">
+              <div className="p-3.5 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5">
                 <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
                 <div>{error}</div>
               </div>
@@ -147,14 +147,14 @@ export default function RegisterPage() {
 
             {successData ? (
               /* Success / Pass View */
-              <div className="space-y-4 text-center py-2">
+              <div className="space-y-4 text-center py-1">
                 <div className="w-14 h-14 bg-pink-500/20 text-pink-400 rounded-2xl flex items-center justify-center mx-auto border border-pink-500/30">
                   <PartyPopper className="w-8 h-8 text-yellow-300 animate-bounce" />
                 </div>
                 <div>
                   <h2 className="text-xl font-black text-white">রেজিস্ট্রেশন সফল হয়েছে!</h2>
                   <p className="text-xs text-slate-400 mt-1">
-                    বর্ণমালা মাল্টিমিডিয়া স্কুল বিদায় উৎসব ২০২৬
+                    বর্ণমালা মাল্টিমিডিয়া স্কুল পূর্ণমিলনী ২০২৬
                   </p>
                 </div>
 
@@ -170,7 +170,7 @@ export default function RegisterPage() {
                       </div>
                     </div>
                     <span className="px-3 py-1 rounded-xl text-xs font-black uppercase bg-pink-500/20 text-pink-300 border border-pink-500/30">
-                      অফিশিয়াল পাস
+                      পূর্ণমিলনী পাস
                     </span>
                   </div>
 
@@ -193,7 +193,19 @@ export default function RegisterPage() {
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t-2 border-dashed border-slate-800 flex justify-between items-center text-[10px] font-mono text-slate-500">
+                  {/* Payment Status */}
+                  <div className="pt-2 pb-1 border-t border-slate-800 flex items-center justify-between text-xs">
+                    <span className="text-slate-400 text-[11px]">পেমেন্ট স্ট্যাটাস:</span>
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                      successData.paymentStatus === 'Completed'
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                        : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                    }`}>
+                      {successData.paymentStatus === 'Completed' ? 'পরিশোধিত (Completed)' : 'পেন্ডিং (অ্যাডমিন অনুমোদনের অপেক্ষায়)'}
+                    </span>
+                  </div>
+
+                  <div className="pt-2 border-t-2 border-dashed border-slate-800 flex justify-between items-center text-[10px] font-mono text-slate-500">
                     <div className="flex items-center gap-2">
                       <QrCode className="w-4 h-4 text-orange-400" />
                       <span>গেট এন্ট্রি টিকেট</span>
@@ -202,8 +214,19 @@ export default function RegisterPage() {
                   </div>
                 </div>
 
+                {/* Emergency Contact Information */}
+                <div className="p-3 bg-slate-950/90 border border-slate-800 rounded-2xl text-xs space-y-1">
+                  <div className="text-orange-400 font-bold flex items-center gap-1.5 text-[11px]">
+                    <Phone className="w-3.5 h-3.5" /> জরুরি যোগাযোগ ও পেমেন্ট নিশ্চিতকরণ:
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-slate-300 text-[11px]">
+                    <div>মাজেদ স্যার: <a href="tel:01714785807" className="font-bold text-yellow-300 hover:underline">01714785807</a></div>
+                    <div>মিঠু স্যার: <a href="tel:01316050399" className="font-bold text-yellow-300 hover:underline">01316050399</a></div>
+                  </div>
+                </div>
+
                 {/* Buttons */}
-                <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                <div className="pt-1 flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={handlePrint}
                     className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-orange-500 to-pink-600 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
@@ -298,8 +321,17 @@ export default function RegisterPage() {
                   </div>
                 </div>
 
+                {/* Emergency Contacts Banner inside form */}
+                <div className="p-3 bg-slate-950 border border-slate-800/80 rounded-2xl text-[11px] space-y-1">
+                  <span className="text-orange-400 font-bold block">জরুরি যোগাযোগ নম্বর:</span>
+                  <div className="flex flex-col sm:flex-row sm:justify-between text-slate-300 gap-1">
+                    <span>মাজেদ স্যার: <a href="tel:01714785807" className="text-yellow-300 font-semibold hover:underline">01714785807</a></span>
+                    <span>মিঠু স্যার: <a href="tel:01316050399" className="text-yellow-300 font-semibold hover:underline">01316050399</a></span>
+                  </div>
+                </div>
+
                 {/* Submit */}
-                <div className="pt-2">
+                <div className="pt-1">
                   <button
                     type="submit"
                     disabled={loading}

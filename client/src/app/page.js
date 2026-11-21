@@ -24,7 +24,8 @@ import {
   PartyPopper,
   Zap,
   Copy,
-  Check
+  Check,
+  Phone
 } from 'lucide-react';
 import RegistrationModal from '../components/RegistrationModal';
 import TicketSearchModal from '../components/TicketSearchModal';
@@ -87,18 +88,20 @@ export default function LandingPage() {
 
   return (
     <div className="relative min-h-screen bg-[#060813] text-slate-100 overflow-x-hidden pb-24 md:pb-0">
-      {/* Dynamic Festival Background Lighting */}
+      {/* Dynamic Background Lighting */}
       <div className="festival-glow w-[350px] sm:w-[600px] h-[350px] sm:h-[600px] bg-gradient-to-tr from-orange-600/30 to-pink-600/30 top-[-100px] left-[-80px]" />
       <div className="festival-glow w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-gradient-to-br from-purple-600/25 to-rose-600/25 top-[30%] right-[-100px]" />
       <div className="festival-glow w-[400px] h-[400px] bg-gradient-to-t from-amber-500/20 to-orange-600/20 bottom-[10%] left-[-100px]" />
 
-      {/* ⚡ FESTIVAL MARQUEE TICKER TAPE */}
+      {/* ⚡ MARQUEE TICKER TAPE */}
       <div className="bg-gradient-to-r from-orange-600 via-pink-600 to-purple-700 text-white font-extrabold text-[11px] sm:text-xs uppercase tracking-widest py-2.5 overflow-hidden shadow-lg relative z-50">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-8">
-          <span>🔥 বর্ণমালা মাল্টিমিডিয়া স্কুল বিদায় উৎসব ২০২৬</span>
+          <span>🔥 বর্ণমালা মাল্টিমিডিয়া স্কুল পূর্ণমিলনী ২০২৬</span>
           <span>•</span>
-          <span>🎓 শিক্ষার্থীদের বর্ণাঢ্য বিদায় সংবর্ধনা</span>
+          <span>🎓 প্রাক্তন ও বর্তমান শিক্ষার্থীদের মহামিলনমেলা</span>
           <span>📅 তারিখ: ১৯-১২-২০২৬</span>
+          <span>•</span>
+          <span>📞 জরুরি যোগাযোগ: মাজেদ স্যার - 01714785807 | মিঠু স্যার - 01316050399</span>
           <span>•</span>
           <span>🇧🇩 জাতীয় পতাকা উত্তোলন: সকাল ০৮:০০ টা</span>
           <span>•</span>
@@ -106,21 +109,19 @@ export default function LandingPage() {
           <span>•</span>
           <span>🕌 নামাজের বিরতি: দুপুর ১২:০০ টা</span>
           <span>•</span>
-          <span>🍽️ উৎসবের স্পেশাল লাঞ্চ: দুপুর ০১:০০ টা</span>
+          <span>🍽️ পূর্ণমিলনী স্পেশাল লাঞ্চ: দুপুর ০১:০০ টা</span>
           <span>•</span>
           <span>🎭 মনোজ্ঞ সাংস্কৃতিক অনুষ্ঠান: দুপুর ০১:০০ টা - বিকাল ০৫:০০ টা</span>
           <span>•</span>
-          <span>👕 এক্সক্লুসিভ ফেয়ারওয়েল টি-শার্ট কিট</span>
+          <span>👕 এক্সক্লুসিভ পূর্ণমিলনী টি-শার্ট কিট</span>
           <span>•</span>
-          <span>🎟️ আসন সীমিত — আজই রেজিস্ট্রেশন করুন!</span>
+          <span>🎟️ রেজিস্ট্রেশন চলছে — আজই অংশ নিন!</span>
           <span>•</span>
-          <span>🔥 বর্ণমালা মাল্টিমিডিয়া স্কুল বিদায় উৎসব ২০২৬</span>
-          <span>•</span>
-          <span>🎓 শিক্ষার্থীদের বর্ণাঢ্য বিদায় সংবর্ধনা</span>
+          <span>🔥 বর্ণমালা মাল্টিমিডিয়া স্কুল পূর্ণমিলনী ২০২৬</span>
         </div>
       </div>
 
-      {/* Top Festival Navigation Bar */}
+      {/* Top Navigation Bar */}
       <nav className="sticky top-0 z-40 bg-[#060813]/90 backdrop-blur-xl border-b border-pink-500/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
           {/* Logo */}
@@ -130,7 +131,7 @@ export default function LandingPage() {
             </div>
             <div>
               <span className="font-black text-lg sm:text-xl tracking-tight text-white flex items-center gap-1 font-['Space_Grotesk'] leading-none">
-                বর্ণমালা <span className="text-pink-500">বিদায় উৎসব</span>
+                বর্ণমালা <span className="text-pink-500">পূর্ণমিলনী</span>
               </span>
               <span className="text-[9px] uppercase tracking-widest font-extrabold text-orange-400 block mt-0.5">
                 বর্ণমালা মাল্টিমিডিয়া স্কুল '২৬
@@ -141,7 +142,7 @@ export default function LandingPage() {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-300">
             <a href="#lineup" className="hover:text-pink-400 transition-colors">উৎসবের আকর্ষণ</a>
-            <a href="#ticket-pass" className="hover:text-pink-400 transition-colors">উৎসব পাস</a>
+            <a href="#ticket-pass" className="hover:text-pink-400 transition-colors">পূর্ণমিলনী পাস</a>
             <a href="#photos" className="hover:text-pink-400 transition-colors">স্মৃতি অ্যালবাম</a>
             <a href="#schedule" className="hover:text-pink-400 transition-colors">সময়সূচি</a>
             <Link href="/register" className="text-pink-400 hover:text-pink-300 font-bold flex items-center gap-1">
@@ -187,20 +188,41 @@ export default function LandingPage() {
             <span className="flex h-2 w-2 rounded-full bg-pink-500 animate-ping" />
             <span className="text-orange-400 font-extrabold uppercase">বর্ণমালা মাল্টিমিডিয়া স্কুল</span>
             <span>•</span>
-            <span>গ্র্যান্ড বিদায় উৎসব ২০২৬</span>
+            <span>গ্র্যান্ড পূর্ণমিলনী ২০২৬</span>
             <span className="text-yellow-300 font-extrabold">তারিখ: ১৯-১২-২০২৬ (সকাল ০৮:০০ - বিকাল ০৫:০০)</span>
           </div>
 
-          {/* Main Festival Title */}
+          {/* Main Title */}
           <h1 className="text-3xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white uppercase leading-[1.1] font-['Space_Grotesk']">
             বর্ণমালা মাল্টিমিডিয়া স্কুল <br />
-            <span className="text-festival-gradient">বিদায় উৎসব ২০২৬</span>
+            <span className="text-festival-gradient">পূর্ণমিলনী ২০২৬</span>
           </h1>
 
           <p className="text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal px-2">
-            বর্ণমালা মাল্টিমিডিয়া স্কুলের শিক্ষার্থীদের স্মৃতির বিদায় উৎসব!
-            আজই আপনার অফিশিয়াল ফেস্টিভ্যাল পাস সংগ্রহ করুন, পছন্দের টি-শার্টের সাইজ নির্বাচন করুন এবং আনন্দঘন স্মৃতিতে অংশ নিন।
+            বর্ণমালা মাল্টিমিডিয়া স্কুলের সকল শিক্ষার্থী ও শিক্ষকদের স্মৃতির মহামিলনমেলা!
+            আজই আপনার অফিশিয়াল পূর্ণমিলনী পাস সংগ্রহ করুন, পছন্দের টি-শার্টের সাইজ নির্বাচন করুন এবং আনন্দঘন স্মৃতিতে অংশ নিন।
           </p>
+
+          {/* Emergency Contact Bar in Hero */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-1">
+            <span className="px-3 py-1.5 rounded-xl bg-orange-500/15 border border-orange-500/30 text-orange-300 font-bold text-xs flex items-center gap-1.5">
+              <Phone className="w-3.5 h-3.5 text-orange-400" /> জরুরি যোগাযোগ:
+            </span>
+            <a
+              href="tel:01714785807"
+              className="px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-200 hover:text-white hover:border-pink-500/50 transition-all flex items-center gap-1.5"
+            >
+              <span>মাজেদ স্যার:</span>
+              <strong className="text-yellow-300 font-mono">01714785807</strong>
+            </a>
+            <a
+              href="tel:01316050399"
+              className="px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-200 hover:text-white hover:border-pink-500/50 transition-all flex items-center gap-1.5"
+            >
+              <span>মিঠু স্যার:</span>
+              <strong className="text-yellow-300 font-mono">01316050399</strong>
+            </a>
+          </div>
 
           {/* Mobile-Friendly CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 max-w-md mx-auto">
@@ -209,7 +231,7 @@ export default function LandingPage() {
               className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:opacity-95 text-white font-black text-base shadow-2xl shadow-pink-600/40 transition-all transform active:scale-95 flex items-center justify-center gap-2"
             >
               <Ticket className="w-5 h-5 text-yellow-300" />
-              <span>উৎসব পাস সংগ্রহ করুন</span>
+              <span>পূর্ণমিলনী পাস সংগ্রহ করুন</span>
               <ArrowRight className="w-5 h-5" />
             </button>
 
@@ -233,10 +255,10 @@ export default function LandingPage() {
             </button>
           </div>
 
-          {/* Festival Countdown */}
+          {/* Countdown */}
           <div className="pt-4 sm:pt-6">
             <div className="text-[11px] uppercase font-black tracking-widest text-orange-400 mb-2.5 flex items-center justify-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> উৎসব শুরু হতে বাকি
+              <Clock className="w-3.5 h-3.5" /> পূর্ণমিলনী শুরু হতে বাকি
             </div>
             <div className="grid grid-cols-4 gap-2 sm:gap-4 max-w-xs sm:max-w-md mx-auto">
               {[
@@ -267,7 +289,7 @@ export default function LandingPage() {
           <div className="relative rounded-3xl overflow-hidden border-2 border-pink-500/30 shadow-2xl shadow-pink-950/40 group">
             <img
               src={EVENT_PHOTOS.heroBanner}
-              alt="বর্ণমালা মাল্টিমিডিয়া স্কুল বিদায় উৎসব"
+              alt="বর্ণমালা মাল্টিমিডিয়া স্কুল পূর্ণমিলনী"
               className="w-full h-64 sm:h-[450px] object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#060813] via-[#060813]/40 to-transparent" />
@@ -285,7 +307,7 @@ export default function LandingPage() {
             <div className="absolute bottom-5 left-5 right-5 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
               <div>
                 <span className="text-xs font-black text-yellow-400 uppercase tracking-widest">
-                  এসএসসি ব্যাচ ২০২৬ বিদায় সংবর্ধনা
+                  বর্ণমালা পূর্ণমিলনী ২০২৬
                 </span>
                 <h3 className="text-xl sm:text-3xl font-black text-white font-['Space_Grotesk']">
                   স্মৃতি • সুর • আনন্দঘন মিলনমেলা
@@ -308,13 +330,13 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
             <span className="px-3.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-orange-500/20 text-orange-400 border border-orange-500/30">
-              ⚡ বর্ণমালা স্মৃতি ও উৎসব
+              ⚡ বর্ণমালা পূর্ণমিলনী
             </span>
             <h2 className="text-3xl sm:text-5xl font-black text-white mt-3 font-['Space_Grotesk']">
-              উৎসবের বিশেষ আকর্ষণসমূহ
+              পূর্ণমিলনীর বিশেষ আকর্ষণসমূহ
             </h2>
             <p className="text-slate-400 text-sm mt-2">
-              বর্ণমালা মাল্টিমিডিয়া স্কুলের বিদায় উৎসবে থাকছে সঙ্গীত, সংস্কৃতি, প্রীতিভোজ ও অমলিন স্মৃতির মিলনমেলা।
+              বর্ণমালা মাল্টিমিডিয়া স্কুলের পূর্ণমিলনীতে থাকছে সঙ্গীত, সংস্কৃতি, প্রীতিভোজ ও অমলিন স্মৃতির মিলনমেলা।
             </p>
           </div>
 
@@ -341,11 +363,11 @@ export default function LandingPage() {
               {
                 zone: 'জোন ০৩',
                 title: 'গ্র্যান্ড প্রীতিভোজ',
-                tag: 'উৎসবের লাঞ্চ',
+                tag: 'পূর্ণমিলনী লাঞ্চ',
                 icon: Utensils,
                 color: 'from-purple-500 to-indigo-600',
                 desc: 'স্পেশাল সুস্বাদু দুপুরের খাবার, বিরিয়ানি, মিষ্টান্ন ও রিফ্রেশমেন্টের সুব্যবস্থা।',
-                badge: 'উৎসবে স্পেশাল খাবার',
+                badge: 'স্পেশাল খাবার',
               },
               {
                 zone: 'জোন ০৪',
@@ -362,17 +384,17 @@ export default function LandingPage() {
                 tag: 'স্মৃতিচারণ ও পদক',
                 icon: Award,
                 color: 'from-amber-500 to-yellow-600',
-                desc: 'শিক্ষক-শিক্ষার্থীদের স্মৃতিচারণ, বিদায়ী সংবর্ধনা স্মারক ও সম্মাননা পদক প্রদান।',
+                desc: 'শিক্ষক-শিক্ষার্থীদের স্মৃতিচারণ, মিলনমেলা স্মারক ও বিশেষ সম্মাননা পদক প্রদান।',
                 badge: 'সম্মাননা পর্ব',
               },
               {
                 zone: 'জোন ০৬',
                 title: 'বর্ণিল সমাপ্তি ও শুভকামনা',
-                tag: 'বিদায় সমাপন',
+                tag: 'সমাপনী পর্ব',
                 icon: Flame,
                 color: 'from-rose-500 to-red-600',
-                desc: 'আবেগঘন বিদায় মুহূর্ত, স্মৃতিচারণ ও উজ্জ্বল ভবিষ্যতের শুভকামনায় সমাপনী পর্ব।',
-                badge: 'উৎসব সমাপনী',
+                desc: 'আবেগঘন পুনর্মিলন মুহূর্ত, স্মৃতিচারণ ও উজ্জ্বল ভবিষ্যতের শুভকামনায় সমাপনী পর্ব।',
+                badge: 'সমাপনী পর্ব',
               },
             ].map((item, idx) => {
               const Icon = item.icon;
@@ -410,20 +432,20 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 🎟️ THE OFFICIAL FESTIVAL PASS PREVIEW */}
+      {/* 🎟️ PASS PREVIEW */}
       <section id="ticket-pass" className="py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="text-center mb-10">
           <span className="text-xs font-black uppercase tracking-widest text-pink-400">
             🎟️ লাইভ পাস প্রিভিউ
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-white mt-1 font-['Space_Grotesk']">
-            উৎসব পাসের অন্তর্ভুক্ত সুবিধাসমূহ
+            পূর্ণমিলনী পাসের অন্তর্ভুক্ত সুবিধাসমূহ
           </h2>
         </div>
 
-        {/* Realistic Mobile Ticket Stub Card */}
+        {/* Card */}
         <div className="ticket-edge rounded-3xl border-2 border-orange-500/30 overflow-hidden shadow-2xl bg-slate-900 max-w-xl mx-auto">
-          {/* Top Holographic Header */}
+          {/* Header */}
           <div className="bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 p-5 text-white relative">
             <div className="flex justify-between items-center">
               <div>
@@ -431,7 +453,7 @@ export default function LandingPage() {
                   বর্ণমালা মাল্টিমিডিয়া স্কুল
                 </span>
                 <h4 className="text-2xl font-black mt-1 tracking-tight font-['Space_Grotesk']">
-                  বিদায় উৎসব '২৬
+                  পূর্ণমিলনী '২৬
                 </h4>
               </div>
               <div className="text-right">
@@ -441,7 +463,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Ticket Perks List */}
+          {/* Ticket Perks */}
           <div className="p-6 sm:p-8 space-y-4 text-xs sm:text-sm">
             <div className="flex items-center gap-3 text-slate-200">
               <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold flex-shrink-0">
@@ -471,16 +493,25 @@ export default function LandingPage() {
               <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold flex-shrink-0">
                 ✓
               </div>
-              <span><strong>অফিশিয়াল ফেয়ারওয়েল আইডি ব্যাজ ও ফিতা</strong></span>
+              <span><strong>অফিশিয়াল পূর্ণমিলনী আইডি ব্যাজ ও ফিতা</strong></span>
             </div>
 
-            {/* Perforated separator */}
+            {/* Gate Scan */}
             <div className="pt-4 border-t-2 border-dashed border-slate-700/80 flex justify-between items-center text-[10px] font-mono text-slate-400">
               <span>স্কুল গেটে স্ক্যান করুন</span>
               <span className="text-orange-400 font-bold">BMS-VALID-2026</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+            {/* Emergency Support Bar */}
+            <div className="p-3 bg-slate-950 rounded-2xl border border-slate-800 text-[11px] space-y-1">
+              <span className="text-orange-400 font-bold block">পেমেন্ট ও জরুরি সহায়তা:</span>
+              <div className="flex flex-col sm:flex-row justify-between text-slate-300 gap-1">
+                <span>মাজেদ স্যার: <a href="tel:01714785807" className="text-yellow-300 font-bold hover:underline">01714785807</a></span>
+                <span>মিঠু স্যার: <a href="tel:01316050399" className="text-yellow-300 font-bold hover:underline">01316050399</a></span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
               <button
                 onClick={() => setIsRegisterOpen(true)}
                 className="py-3.5 px-4 rounded-2xl bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white font-black text-xs uppercase tracking-wider shadow-xl shadow-pink-600/30 flex items-center justify-center gap-2 active:scale-98 transition-transform"
@@ -500,7 +531,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 📸 FESTIVAL MEMORIES STREAM */}
+      {/* 📸 MEMORIES STREAM */}
       <section id="photos" className="py-16 bg-[#0a0d1f]/60 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-end mb-8">
@@ -514,7 +545,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Swipeable Mobile Grid */}
+          {/* Swipeable Grid */}
           <div className="flex sm:grid sm:grid-cols-3 gap-4 overflow-x-auto pb-4 sm:pb-0 snap-x no-scrollbar">
             {[
               { img: EVENT_PHOTOS.stageDj, label: 'মঞ্চ ও সঙ্গীত পরিবেশনা', tag: 'লাইভ স্টেজ' },
@@ -548,17 +579,17 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ⏰ FESTIVAL TIMELINE / SCHEDULE */}
+      {/* ⏰ TIMELINE / SCHEDULE */}
       <section id="schedule" className="py-16 sm:py-20 px-4 sm:px-6 max-w-3xl mx-auto">
         <div className="text-center mb-10">
           <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-orange-500/10 text-orange-400 border border-orange-500/25">
             📅 শনিবার, ১৯-১২-২০২৬ • অফিশিয়াল কর্মসূচি
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-white font-['Space_Grotesk'] mt-2">
-            উৎসবের পূর্ণাঙ্গ সময়সূচি
+            পূর্ণমিলনীর পূর্ণাঙ্গ সময়সূচি
           </h2>
           <p className="text-slate-400 text-xs sm:text-sm mt-1">
-            বর্ণমালা মাল্টিমিডিয়া স্কুল বিদায় উৎসব ২০২৬
+            বর্ণমালা মাল্টিমিডিয়া স্কুল পূর্ণমিলনী ২০২৬
           </p>
         </div>
 
@@ -574,7 +605,7 @@ export default function LandingPage() {
             {
               time: 'সকাল ১০:০০ টা',
               title: 'স্মৃতিচারণ ও আলোচনা সভা',
-              note: 'শিক্ষক ও অতিথিবৃন্দের অনুপ্রেরণামূলক বক্তব্য এবং শিক্ষার্থীদের স্মৃতিচারণ ও বিদায়ী অনুভূতি।',
+              note: 'শিক্ষক ও অতিথিবৃন্দের অনুপ্রেরণামূলক বক্তব্য এবং শিক্ষার্থীদের স্মৃতিচারণ ও অনুভূতির আড্ডা।',
               badge: 'আলোচনা সভা',
               color: 'text-sky-400 bg-sky-500/10 border-sky-500/20',
             },
@@ -588,14 +619,14 @@ export default function LandingPage() {
             {
               time: 'দুপুর ০১:০০ টা',
               title: 'প্রীতিভোজ',
-              note: 'উৎসবের স্পেশাল দুপুরের খাবার ও আপ্যায়ন।',
+              note: 'পূর্ণমিলনীর স্পেশাল দুপুরের খাবার ও আপ্যায়ন।',
               badge: 'গ্র্যান্ড লাঞ্চ',
               color: 'text-orange-400 bg-orange-500/10 border-orange-500/20',
             },
             {
               time: 'দুপুর ০১:০০ টা - বিকাল ০৫:০০ টা',
               title: 'মনোজ্ঞ সাংস্কৃতিক অনুষ্ঠান',
-              note: 'নাটক, গান, নৃত্য, স্মৃতি স্মারক ও সম্মাননা বিতরণী বর্ণাঢ্য সাংস্কৃতিক উৎসব।',
+              note: 'নাটক, গান, নৃত্য, স্মৃতি স্মারক ও সম্মাননা বিতরণী বর্ণাঢ্য সাংস্কৃতিক অনুষ্ঠান।',
               badge: 'সাংস্কৃতিক অনুষ্ঠান',
               color: 'text-pink-400 bg-pink-500/10 border-pink-500/20',
             },
@@ -628,9 +659,11 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
             <Flame className="w-4 h-4 text-orange-500" />
-            <span className="font-extrabold text-slate-300">বর্ণমালা মাল্টিমিডিয়া স্কুল বিদায় উৎসব ২০২৬</span>
+            <span className="font-extrabold text-slate-300">বর্ণমালা মাল্টিমিডিয়া স্কুল পূর্ণমিলনী ২০২৬</span>
           </div>
-          <div>ভালোবাসায় আয়োজিত • এসএসসি ব্যাচ ২০২৬ উদযাপন কমিটি</div>
+          <div className="text-slate-400">
+            জরুরি যোগাযোগ: <a href="tel:01714785807" className="text-yellow-400 font-semibold hover:underline">মাজেদ স্যার (01714785807)</a> • <a href="tel:01316050399" className="text-yellow-400 font-semibold hover:underline">মিঠু স্যার (01316050399)</a>
+          </div>
           <div className="flex items-center gap-4">
             <Link href="/register" className="text-pink-400 hover:underline">
               রেজিস্ট্রেশন ফর্ম
@@ -642,7 +675,7 @@ export default function LandingPage() {
         </div>
       </footer>
 
-      {/* 📱 STICKY BOTTOM ACTION BAR FOR MOBILE PHONES */}
+      {/* 📱 STICKY BOTTOM ACTION BAR FOR MOBILE */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#060813]/95 backdrop-blur-lg border-t border-pink-500/30 p-3 flex items-center gap-3">
         <button
           onClick={() => setIsSearchOpen(true)}
@@ -657,7 +690,7 @@ export default function LandingPage() {
           className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-pink-600/40 flex items-center justify-center gap-2 active:scale-95 transition-transform"
         >
           <Ticket className="w-4 h-4 text-yellow-300" />
-          <span>উৎসব পাস নিন (ফর্ম)</span>
+          <span>পূর্ণমিলনী পাস নিন (ফর্ম)</span>
         </button>
       </div>
 

@@ -26,7 +26,8 @@ import {
   Phone,
   Mail,
   Home,
-  School
+  School,
+  Zap
 } from 'lucide-react';
 import {
   getAuthToken,
@@ -37,6 +38,7 @@ import {
   updateParticipantAdmin,
   deleteParticipantAdmin,
   toggleCheckInAdmin,
+  togglePaymentAdmin,
   getExportCSVUrl
 } from '../../../lib/api';
 
@@ -156,6 +158,18 @@ export default function AdminDashboardPage() {
       fetchStats();
     } catch (err) {
       showFeedback(err.message || 'Check-in update failed', 'error');
+    }
+  };
+
+  // Toggle Payment Status
+  const handleTogglePayment = async (participant) => {
+    try {
+      const res = await togglePaymentAdmin(participant._id);
+      showFeedback(res.message);
+      fetchParticipants();
+      fetchStats();
+    } catch (err) {
+      showFeedback(err.message || 'Payment status update failed', 'error');
     }
   };
 
@@ -280,9 +294,14 @@ export default function AdminDashboardPage() {
             </div>
 
             <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
-              <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">
-                T-Shirt Inventory
-              </span>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] uppercase font-bold text-slate-400">
+                  T-Shirt Inventory (Paid Only)
+                </span>
+                <span className="text-[10px] font-mono text-emerald-400 font-bold">
+                  Total: {Object.values(stats.tshirtSizes || {}).reduce((a, b) => a + b, 0)}
+                </span>
+              </div>
               <div className="flex flex-wrap gap-1 mt-1">
                 {Object.entries(stats.tshirtSizes || {}).map(([size, count]) => (
                   <span
@@ -498,10 +517,24 @@ export default function AdminDashboardPage() {
                           </span>
                         </td>
                         <td className="py-3 px-4">
-                          <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${p.paymentStatus === 'Completed' ? 'text-emerald-400' : 'text-yellow-400'
-                            }`}>
-                            {p.paymentStatus}
-                          </span>
+                          <button
+                            onClick={() => handleTogglePayment(p)}
+                            title="Click to toggle payment status"
+                            className={`px-2.5 py-1 rounded-xl text-[10px] font-black transition-all flex items-center gap-1.5 active:scale-95 ${p.paymentStatus === 'Completed'
+                                ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30'
+                                : 'bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:opacity-90 shadow-md shadow-orange-500/20'
+                              }`}
+                          >
+                            {p.paymentStatus === 'Completed' ? (
+                              <>
+                                <CheckCircle className="w-3 h-3" /> Completed
+                              </>
+                            ) : (
+                              <>
+                                <Zap className="w-3 h-3 text-yellow-200 animate-pulse" /> Pending (Click to Complete)
+                              </>
+                            )}
+                          </button>
                         </td>
                         <td className="py-3 px-4">
                           <button
@@ -618,6 +651,7 @@ function ParticipantFormModal({ title, initialData, onClose, onSuccess }) {
     phone: initialData?.phone || '',
     batch: initialData?.batch || '',
     tshirtSize: initialData?.tshirtSize || 'L',
+    paymentStatus: initialData?.paymentStatus || 'Pending',
     attendanceStatus: initialData?.attendanceStatus || 'Not Checked-in',
   });
 
@@ -730,6 +764,20 @@ function ParticipantFormModal({ title, initialData, onClose, onSuccess }) {
             >
               <option value="Not Checked-in">Not Checked-in</option>
               <option value="Checked-in">Checked-in</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="text-[11px] font-bold text-slate-300 block mb-1">Payment Status</label>
+            <select
+              name="paymentStatus"
+              value={formData.paymentStatus}
+              onChange={handleChange}
+              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-pink-500"
+            >
+              <option value="Pending">Pending</option>
+              <option value="Completed">Completed</option>
+              <option value="Waived">Waived</option>
             </select>
           </div>
 

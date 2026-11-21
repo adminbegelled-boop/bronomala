@@ -1,9 +1,9 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'বর্ণমালা মাল্টিমিডিয়া স্কুল | বিদায় উৎসব ২০২৬',
-  description: 'বর্ণমালা মাল্টিমিডিয়া স্কুল বিদায় উৎসব ২০২৬-এর অফিশিয়াল রেজিস্ট্রেশন পোর্টাল। আপনার পাস সংগ্রহ করুন এবং উৎসবে অংশ নিন!',
-  keywords: ['Bornomala Multimedia School', 'farewell festival', 'BMS farewell', 'registration', 'school farewell 2026'],
+  title: 'বর্ণমালা মাল্টিমিডিয়া স্কুল | পূর্ণমিলনী ২০২৬',
+  description: 'বর্ণমালা মাল্টিমিডিয়া স্কুল পূর্ণমিলনী ২০২৬-এর অফিশিয়াল রেজিস্ট্রেশন পোর্টাল। আপনার পাস সংগ্রহ করুন এবং উৎসবে অংশ নিন!',
+  keywords: ['Bornomala Multimedia School', 'পূর্ণমিলনী', 'পুনর্মিলনী ২০২৬', 'BMS reunion', 'registration'],
 };
 
 export default function RootLayout({ children }) {

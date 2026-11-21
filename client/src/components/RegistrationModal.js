@@ -106,7 +106,7 @@ export default function RegistrationModal({ isOpen, onClose }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 overflow-y-auto bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full h-full sm:h-auto sm:max-h-[90vh] sm:max-w-lg bg-[#0a0f1d] sm:border sm:border-pink-500/25 sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden">
 
-        {/* Festival Header */}
+        {/* Header */}
         <div className="bg-gradient-to-r from-orange-600 via-pink-600 to-purple-700 p-4 sm:p-5 text-white relative flex-shrink-0">
           <div className="flex items-center justify-between pr-10 mb-1">
             <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest bg-yellow-400 text-black">
@@ -131,36 +131,36 @@ export default function RegistrationModal({ isOpen, onClose }) {
           </button>
 
           <h2 className="text-xl font-black tracking-tight font-['Space_Grotesk']">
-            বিদায় উৎসব রেজিস্ট্রেশন ফর্ম
+            পূর্ণমিলনী রেজিস্ট্রেশন ফর্ম
           </h2>
           <p className="text-pink-100 text-xs mt-0.5">
-            অফিশিয়াল উৎসব পাস পেতে নিচের ৪টি তথ্য পূরণ করুন!
+            অফিশিয়াল পাস পেতে নিচের ৪টি তথ্য পূরণ করুন!
           </p>
         </div>
 
         {/* Scrollable Form Area */}
-        <div className="p-4 sm:p-6 overflow-y-auto flex-1">
+        <div className="p-4 sm:p-6 overflow-y-auto flex-1 space-y-4">
           {error && (
-            <div className="mb-4 p-3.5 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5">
+            <div className="p-3.5 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5">
               <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
               <div>{error}</div>
             </div>
           )}
 
           {successData ? (
-            /* Festival Pass Card View */
-            <div className="space-y-4 py-2">
+            /* Pass Card View */
+            <div className="space-y-4 py-1">
               <div className="text-center">
                 <div className="w-12 h-12 bg-pink-500/20 text-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-2 border border-pink-500/30">
                   <PartyPopper className="w-7 h-7 text-yellow-300" />
                 </div>
                 <h3 className="text-xl font-black text-white">রেজিস্ট্রেশন সম্পন্ন হয়েছে!</h3>
                 <p className="text-xs text-slate-400">
-                  এই যে আপনার <strong>বর্ণমালা মাল্টিমিডিয়া স্কুল</strong> বিদায় উৎসবের অফিশিয়াল পাস।
+                  এই যে আপনার <strong>বর্ণমালা মাল্টিমিডিয়া স্কুল</strong> পূর্ণমিলনীর অফিশিয়াল পাস।
                 </p>
               </div>
 
-              {/* Realistic Concert Pass Ticket Stub */}
+              {/* Ticket Stub */}
               <div className="ticket-edge rounded-2xl border-2 border-pink-500/40 bg-slate-900 overflow-hidden shadow-2xl p-4 sm:p-5 relative">
                 <div className="flex justify-between items-center pb-3 border-b border-slate-800">
                   <div>
@@ -172,7 +172,7 @@ export default function RegistrationModal({ isOpen, onClose }) {
                     </div>
                   </div>
                   <span className="px-2.5 py-1 rounded-xl text-xs font-black uppercase bg-pink-500/20 text-pink-300 border border-pink-500/30">
-                    ভিআইপি পাস
+                    পূর্ণমিলনী পাস
                   </span>
                 </div>
 
@@ -195,8 +195,20 @@ export default function RegistrationModal({ isOpen, onClose }) {
                   </div>
                 </div>
 
-                {/* Barcode Mockup */}
-                <div className="pt-3 border-t-2 border-dashed border-slate-800 flex justify-between items-center text-[10px] font-mono text-slate-500">
+                {/* Payment Status Badge */}
+                <div className="pt-2 pb-1 border-t border-slate-800 flex items-center justify-between text-xs">
+                  <span className="text-slate-400 text-[11px]">পেমেন্ট স্ট্যাটাস:</span>
+                  <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                    successData.paymentStatus === 'Completed'
+                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                      : 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                  }`}>
+                    {successData.paymentStatus === 'Completed' ? 'পরিশোধিত (Completed)' : 'পেন্ডিং (অ্যাডমিন অনুমোদনের অপেক্ষায়)'}
+                  </span>
+                </div>
+
+                {/* Gate Entry */}
+                <div className="pt-2 border-t-2 border-dashed border-slate-800 flex justify-between items-center text-[10px] font-mono text-slate-500">
                   <div className="flex items-center gap-2">
                     <QrCode className="w-5 h-5 text-orange-400" />
                     <span>গেট এন্ট্রি টিকেট</span>
@@ -205,8 +217,19 @@ export default function RegistrationModal({ isOpen, onClose }) {
                 </div>
               </div>
 
+              {/* Emergency Contact Information */}
+              <div className="p-3 bg-slate-950/90 border border-slate-800 rounded-2xl text-xs space-y-1">
+                <div className="text-orange-400 font-bold flex items-center gap-1.5 text-[11px]">
+                  <Phone className="w-3.5 h-3.5" /> জরুরি যোগাযোগ ও পেমেন্ট নিশ্চিতকরণ:
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-slate-300 text-[11px]">
+                  <div>মাজেদ স্যার: <a href="tel:01714785807" className="font-bold text-yellow-300 hover:underline">01714785807</a></div>
+                  <div>মিঠু স্যার: <a href="tel:01316050399" className="font-bold text-yellow-300 hover:underline">01316050399</a></div>
+                </div>
+              </div>
+
               {/* Actions */}
-              <div className="flex flex-col sm:flex-row gap-2 pt-2">
+              <div className="flex flex-col sm:flex-row gap-2 pt-1">
                 <button
                   onClick={handlePrint}
                   className="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-pink-600 text-white font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
@@ -301,8 +324,17 @@ export default function RegistrationModal({ isOpen, onClose }) {
                 </div>
               </div>
 
+              {/* Emergency Contacts banner inside form */}
+              <div className="p-3 bg-slate-950 border border-slate-800/80 rounded-2xl text-[11px] space-y-1">
+                <span className="text-orange-400 font-bold block">জরুরি যোগাযোগ নম্বর:</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between text-slate-300 gap-1">
+                  <span>মাজেদ স্যার: <a href="tel:01714785807" className="text-yellow-300 font-semibold hover:underline">01714785807</a></span>
+                  <span>মিঠু স্যার: <a href="tel:01316050399" className="text-yellow-300 font-semibold hover:underline">01316050399</a></span>
+                </div>
+              </div>
+
               {/* Submit CTA */}
-              <div className="pt-2">
+              <div className="pt-1">
                 <button
                   type="submit"
                   disabled={loading}

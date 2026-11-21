@@ -9,6 +9,7 @@ const {
   updateParticipant,
   deleteParticipant,
   toggleCheckIn,
+  togglePayment,
   getStats,
   exportCSV,
 } = require('../controllers/participantController');
@@ -25,6 +26,7 @@ router.get('/admin/participants/:id', verifyAdminToken, getParticipantById);
 router.put('/admin/participants/:id', verifyAdminToken, updateParticipant);
 router.delete('/admin/participants/:id', verifyAdminToken, deleteParticipant);
 router.patch('/admin/participants/:id/checkin', verifyAdminToken, toggleCheckIn);
+router.patch('/admin/participants/:id/payment', verifyAdminToken, togglePayment);
 router.get('/admin/stats', verifyAdminToken, getStats);
 router.get('/admin/export', verifyAdminToken, exportCSV);
 

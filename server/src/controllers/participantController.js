@@ -55,7 +55,7 @@ const registerParticipant = async (req, res) => {
       department: department ? department.trim() : 'General',
       studentId: studentId ? studentId.trim() : '',
       farewellMessage: farewellMessage ? farewellMessage.trim() : '',
-      paymentStatus: 'Completed',
+      paymentStatus: 'Pending',
     });
 
     await newParticipant.save();
@@ -317,6 +317,38 @@ const toggleCheckIn = async (req, res) => {
   }
 };
 
+// Admin: Toggle or complete payment status
+const togglePayment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const participant = await Participant.findById(id);
+
+    if (!participant) {
+      return res.status(404).json({
+        success: false,
+        message: 'Participant not found',
+      });
+    }
+
+    const isCompleted = participant.paymentStatus === 'Completed';
+    participant.paymentStatus = isCompleted ? 'Pending' : 'Completed';
+
+    await participant.save();
+
+    return res.status(200).json({
+      success: true,
+      message: `${participant.name}'s payment status is now ${participant.paymentStatus}`,
+      participant,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to update payment status',
+      error: error.message,
+    });
+  }
+};
+
 // Admin: Get Dashboard Stats
 const getStats = async (req, res) => {
   try {
@@ -333,6 +365,7 @@ const getStats = async (req, res) => {
       Participant.countDocuments({ paymentStatus: 'Completed' }),
       Participant.countDocuments({ paymentStatus: 'Pending' }),
       Participant.aggregate([
+        { $match: { paymentStatus: 'Completed' } },
         { $group: { _id: '$tshirtSize', count: { $sum: 1 } } },
         { $sort: { _id: 1 } },
       ]),
@@ -426,6 +459,7 @@ module.exports = {
   updateParticipant,
   deleteParticipant,
   toggleCheckIn,
+  togglePayment,
   getStats,
   exportCSV,
 };
