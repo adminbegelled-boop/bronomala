@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: firewell-registration
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_NAME
+        value: Farewell Admin
+      - key: ADMIN_EMAIL
+        value: admin@firewell.com
+      - key: ADMIN_PASSWORD
+        value: admin123

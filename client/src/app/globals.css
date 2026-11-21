@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    display: flex;
+    width: 200%;
+    animation: marquee 20s linear infinite;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+}
+
+:root {
+  --neon-orange: #ff5722;
+  --neon-pink: #ff1493;
+  --neon-purple: #8a2be2;
+  --neon-gold: #ffb703;
+}
+
+body {
+  background-color: #060813;
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Festival Neon Glows */
+.festival-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.text-festival-gradient {
+  background: linear-gradient(135deg, #ff7a00 0%, #ff007a 50%, #7928ca 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Festival Ticket Stub Perforations */
+.ticket-edge {
+  position: relative;
+  background: #0f172a;
+}
+.ticket-edge::before,
+.ticket-edge::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  background-color: #060813;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.ticket-edge::before {
+  left: -12px;
+}
+.ticket-edge::after {
+  right: -12px;
+}
+
+/* Hologram shine effect */
+.hologram-shine {
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 30%,
+    rgba(255, 215, 0, 0.15) 45%,
+    rgba(255, 20, 147, 0.15) 55%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+}
+
+/* Custom Scrollbar for mobile/desktop */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #060813;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f97316;
+}
