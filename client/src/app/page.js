@@ -25,7 +25,9 @@ import {
   Zap,
   Copy,
   Check,
-  Phone
+  Phone,
+  AlertTriangle,
+  Lock
 } from 'lucide-react';
 import RegistrationModal from '../components/RegistrationModal';
 import TicketSearchModal from '../components/TicketSearchModal';
@@ -75,6 +77,18 @@ export default function LandingPage() {
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Lock body scroll for non-closeable payment modal
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = 'unset';
+      }
+    };
   }, []);
 
   const handleCopyFormLink = () => {
@@ -703,6 +717,61 @@ export default function LandingPage() {
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
       />
+
+      {/* 🚫 NON-CLOSEABLE PAYMENT ERROR LOCKOUT MODAL */}
+      <div
+        className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 sm:p-6 select-none cursor-not-allowed"
+        onClick={(e) => e.stopPropagation()}
+        onContextMenu={(e) => e.preventDefault()}
+      >
+        <div className="relative max-w-lg w-full bg-[#0d0914] border-2 border-rose-500/60 rounded-3xl p-6 sm:p-8 shadow-[0_0_80px_rgba(244,63,94,0.35)] text-center space-y-6 animate-in fade-in zoom-in-95 duration-300 pointer-events-auto">
+          {/* Pulsing Danger Icon */}
+          <div className="relative mx-auto w-20 h-20 flex items-center justify-center">
+            <div className="absolute inset-0 rounded-full bg-rose-500/20 animate-ping" />
+            <div className="relative w-20 h-20 rounded-full bg-gradient-to-tr from-rose-600 to-red-600 flex items-center justify-center shadow-lg shadow-rose-600/50 border border-rose-400/40">
+              <AlertTriangle className="w-10 h-10 text-white" />
+            </div>
+          </div>
+
+          {/* Status Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-mono font-bold uppercase tracking-wider">
+            <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+            Status: Payment Error (Suspended)
+          </div>
+
+          {/* Title */}
+          <div className="space-y-1.5">
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase font-['Space_Grotesk']">
+              Payment Error
+            </h2>
+            <h3 className="text-lg sm:text-xl font-bold text-rose-300">
+              পেমেন্ট সংক্রান্ত ত্রুটি
+            </h3>
+          </div>
+
+          {/* Message Box */}
+          <div className="bg-slate-950/90 border border-slate-800 rounded-2xl p-4 sm:p-5 text-left space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-rose-200/90 font-medium">
+              ⚠️ <strong>Service Suspended:</strong> Access to this website is currently locked due to a pending billing payment or payment verification error.
+            </p>
+            <p className="text-slate-400 text-xs pt-2 border-t border-slate-800/80">
+              পেমেন্ট বকেয়া বা ভেরিফিকেশন ত্রুটির কারণে এই ওয়েবসাইটটির সেবা সাময়িকভাবে স্থগিত করা হয়েছে। ওয়েবসাইটটি পুনরায় সচল করতে অনুগ্রহ করে অবিলম্বে অ্যাডমিনিস্ট্রেটরের সাথে যোগাযোগ করুন।
+            </p>
+          </div>
+
+          {/* Error Reference Code */}
+          <div className="flex justify-between items-center text-[11px] font-mono text-slate-500 px-1">
+            <span>ERROR CODE: ERR_PAYMENT_REQUIRED_402</span>
+            <span className="text-rose-400 font-bold">ACCESS BLOCKED</span>
+          </div>
+
+          {/* Lock Notice */}
+          <div className="pt-2 text-xs text-slate-400 flex items-center justify-center gap-1.5 font-medium border-t border-slate-900">
+            <Lock className="w-3.5 h-3.5 text-rose-400" />
+            <span>This screen cannot be closed or bypassed.</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
